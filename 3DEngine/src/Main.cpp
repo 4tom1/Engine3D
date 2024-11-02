@@ -1,8 +1,6 @@
 #include "Engine3D.h"
 #include "Mesh.h"
 
-#include <iostream>
-
 #define DIS -50
 
 class Demo : public E3D::Engine3D
@@ -43,13 +41,24 @@ class Demo : public E3D::Engine3D
 
 		void Update(float deltaTime) override 
 		{
-			std::cout << deltaTime * 1000.f << " ms" << std::endl;
-			cube.Rotate(0.5f * deltaTime, 0.7f * deltaTime, 0.3f * deltaTime);
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
+				cube.Rotate(rot_speed * deltaTime);
+
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Down))
+				cube.Rotate(-rot_speed * deltaTime);
+
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Left))
+				cube.Rotate(0.0f, rot_speed * deltaTime);
+
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Right))
+				cube.Rotate(0.0f, -rot_speed * deltaTime);
+			
 			renderer.DrawMesh(cube);
 		}
 
 	private:
 		E3D::Mesh cube;
+		float rot_speed = 0.5f;
 };
 
 int main(int argc, char* argv[])

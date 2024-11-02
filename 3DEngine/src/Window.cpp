@@ -28,14 +28,13 @@ void E3D::Window::Input()
 	{
 		switch (m_event.type)
 		{
-			SDL_KEYDOWN:
-				break;
-			SDL_KEYUP:
-				break;
 			SDL_QUIT:
 				SDL_Quit();
 				exit(0);
-
+			//SDL_KEYDOWN:
+			//	SetPressedKey(true);
+			//SDL_KEYUP:
+			//	SetPressedKey(false);
 			default:
 				break;
 		}
@@ -75,6 +74,18 @@ void E3D::Window::SetPressedKey(bool state)
 			break;
 		case SDLK_DOWN:
 			Keyboard::GetInstance().GetKeyRef(E3D::Down) = state;
+			break;
+		case SDLK_a:
+			Keyboard::GetInstance().GetKeyRef(E3D::A) = state;
+			break;
+		case SDLK_d:
+			Keyboard::GetInstance().GetKeyRef(E3D::D) = state;
+			break;
+		case SDLK_s:
+			Keyboard::GetInstance().GetKeyRef(E3D::S) = state;
+			break;
+		case SDLK_w:
+			Keyboard::GetInstance().GetKeyRef(E3D::W) = state;
 			break;
 		default:
 			break;
