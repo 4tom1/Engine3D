@@ -16,6 +16,6 @@ void E3D::Engine3D::Run()
 
 		auto end = std::chrono::high_resolution_clock::now();
 
-		deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() / 1000.f;
+		deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000000.f;
 	}
 }

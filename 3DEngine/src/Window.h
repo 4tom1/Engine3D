@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <vector>
 
+#include "Keyboard.h"
+
 namespace E3D {
 	
 	struct Pointf2 {
@@ -23,9 +25,14 @@ namespace E3D {
 			void Pixel(float x, float y);
 			void Display();
 			void Input();
+			
+			int GetHight();
+			int GetWidth();
 
 		private:
+			void SetPressedKey(bool state);
 
+		private:
 			SDL_Event m_event;
 			SDL_Window* m_window;
 			SDL_Renderer* m_renderer;

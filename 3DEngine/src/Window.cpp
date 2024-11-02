@@ -26,10 +26,57 @@ void E3D::Window::Input()
 {
 	while (SDL_PollEvent(&m_event))
 	{
-		if (m_event.type == SDL_QUIT)
+		switch (m_event.type)
 		{
-			SDL_Quit();
-			exit(0);
+			SDL_KEYDOWN:
+				break;
+			SDL_KEYUP:
+				break;
+			SDL_QUIT:
+				SDL_Quit();
+				exit(0);
+
+			default:
+				break;
 		}
+	}
+}
+
+int E3D::Window::GetHight()
+{
+	int h;
+	
+	SDL_GetWindowSize(m_window, 0, &h);
+
+	return h;
+}
+
+int E3D::Window::GetWidth()
+{
+	int w;
+
+	SDL_GetWindowSize(m_window, &w, 0);
+
+	return w;
+}
+
+void E3D::Window::SetPressedKey(bool state)
+{
+	switch (m_event.key.keysym.sym)
+	{
+		case SDLK_LEFT:
+			Keyboard::GetInstance().GetKeyRef(E3D::Left) = state;
+			break;
+		case SDLK_RIGHT:
+			Keyboard::GetInstance().GetKeyRef(E3D::Right) = state;
+			break;
+		case SDLK_UP:
+			Keyboard::GetInstance().GetKeyRef(E3D::Up) = state;
+			break;
+		case SDLK_DOWN:
+			Keyboard::GetInstance().GetKeyRef(E3D::Down) = state;
+			break;
+		default:
+			break;
 	}
 }

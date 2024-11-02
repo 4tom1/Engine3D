@@ -36,12 +36,15 @@ class Demo : public E3D::Engine3D
 				{{DIS * -1,DIS,DIS * -1}, {DIS,DIS,DIS * -1}, {DIS,DIS,DIS}},
 				{{DIS * -1,DIS,DIS * -1}, {DIS,DIS,DIS}, {DIS * -1,DIS,DIS}}
 			};
+
+			cube.position.x = window.GetWidth() / 4;
+			cube.position.y = window.GetHight() / 4;
 		}
 
 		void Update(float deltaTime) override 
 		{
-			std::cout << deltaTime * 1000 << " ms" << std::endl;
-			cube.Rotate(0.5f * deltaTime, 0.5f * deltaTime, 0.5f * deltaTime);
+			std::cout << deltaTime * 1000.f << " ms" << std::endl;
+			cube.Rotate(0.5f * deltaTime, 0.7f * deltaTime, 0.3f * deltaTime);
 			renderer.DrawMesh(cube);
 		}
 
