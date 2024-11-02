@@ -28,13 +28,15 @@ void E3D::Window::Input()
 	{
 		switch (m_event.type)
 		{
-			SDL_QUIT:
+			case SDL_QUIT:
 				SDL_Quit();
 				exit(0);
-			//SDL_KEYDOWN:
-			//	SetPressedKey(true);
-			//SDL_KEYUP:
-			//	SetPressedKey(false);
+			case SDL_KEYDOWN:
+				SetKeyState(true);
+				break;
+			case SDL_KEYUP:
+				SetKeyState(false);
+				break;
 			default:
 				break;
 		}
@@ -59,7 +61,7 @@ int E3D::Window::GetWidth()
 	return w;
 }
 
-void E3D::Window::SetPressedKey(bool state)
+void E3D::Window::SetKeyState(bool state)
 {
 	switch (m_event.key.keysym.sym)
 	{

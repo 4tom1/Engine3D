@@ -30,7 +30,7 @@ namespace E3D {
 			int GetWidth();
 
 		private:
-			void SetPressedKey(bool state);
+			void SetKeyState(bool state);
 
 		private:
 			SDL_Event m_event;
