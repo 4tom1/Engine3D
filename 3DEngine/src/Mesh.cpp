@@ -2,15 +2,16 @@
 
 void E3D::Mesh::Rotate(float x, float y, float z)
 {
-	for (tri& t : tringles)
+	for (Tri& tri : triangles)
 	{
-		RotatePoint(t.p1, x, y, z);
-		RotatePoint(t.p2, x, y, z);
-		RotatePoint(t.p3, x, y, z);
+		for (int i = 0; i < 3; i++)
+		{
+			RotatePoint(tri.p[i], x, y, z);
+		}
 	}
 }
 
-void E3D::Mesh::RotatePoint(vecf3& point, float x, float y, float z)
+void E3D::Mesh::RotatePoint(vec3f& point, float x, float y, float z)
 {
 	float rad = 0;
 

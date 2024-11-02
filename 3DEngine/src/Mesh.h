@@ -4,14 +4,14 @@
 
 namespace E3D {
 
-	struct vecf3 {
+	struct vec3f {
 		float x, y, z;
 	};
 
-	typedef vecf3 Position;
+	typedef vec3f Position;
 
-	struct tri {
-		vecf3 p1, p2, p3;
+	struct Tri {
+		vec3f p[3];
 	};
 
 	class Mesh {
@@ -19,10 +19,10 @@ namespace E3D {
 			void Rotate(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
 		private:
-			void RotatePoint(vecf3& point, float x, float y, float z);
+			void RotatePoint(vec3f& point, float x, float y, float z);
 
 		public:
-			std::vector<tri> tringles;
+			std::vector<Tri> triangles;
 			Position position;
 	};
 }
