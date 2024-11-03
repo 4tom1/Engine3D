@@ -51,11 +51,12 @@ void E3D::Renderer::DrawMesh(const Mesh& mesh)
 void E3D::Renderer::Projection3D(vec3f& point) const
 {
 	float tg = tanf(fov * 0.5f);
+
 	point.z = point.z * (far / (far - near)) - ((far * near) / (far - near));
-	
+
 	if (point.z != 0)
-	{
-		point.x = (aspectRatio * point.x) / (tg * point.z);
-		point.y = (aspectRatio * point.y) / (tg * point.z);
+	{	
+		point.x = (p_window->aspectRatio * point.x) / (tg * point.z);
+		point.y = (p_window->aspectRatio * point.y) / (tg * point.z);
 	}
 }

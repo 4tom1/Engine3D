@@ -9,15 +9,11 @@ namespace E3D {
 	{
 		public:
 			
-			Renderer(Window& window) : p_window(&window) 
-			{
-				aspectRatio = (float)p_window->GetHight() / (float)p_window->GetWidth();
-			}
+			Renderer(Window& window) : p_window(&window) {}
 
 			void DrawMesh(const Mesh& mesh);
 
 		public:
-			float aspectRatio;
 			float fov = 90.0f;
 			float far = 1000.0f;
 			float near = 0.1f;

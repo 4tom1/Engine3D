@@ -20,6 +20,7 @@ namespace E3D {
 				SDL_Init(SDL_INIT_VIDEO);
 				SDL_CreateWindowAndRenderer(1000, 1000, 0, &m_window, &m_renderer);
 				SDL_RenderSetScale(m_renderer, 2, 2);
+				aspectRatio = 1000 / 1000;
 			}
 
 			void Pixel(float x, float y);
@@ -28,6 +29,9 @@ namespace E3D {
 			
 			int GetHight();
 			int GetWidth();
+
+		public:
+			float aspectRatio;
 
 		private:
 			void SetKeyState(bool state);
