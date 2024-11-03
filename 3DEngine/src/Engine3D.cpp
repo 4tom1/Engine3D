@@ -33,10 +33,5 @@ void E3D::Engine3D::Run()
 				timer = 0.0f;
 			}
 		}
-
-		if (m_verticesDebuger)
-		{
-
-		}
 	}
 }

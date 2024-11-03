@@ -35,7 +35,7 @@ class Demo : public E3D::Engine3D
 
 				// BOTTOM
 				{0,DIS,0, DIS,DIS,0, DIS,DIS,DIS},
-				{0,DIS,0, DIS,DIS,DIS, 0,DIS,DIS}
+				{0,DIS,0, DIS,DIS,DIS, 0,DIS,DIS},
 			};
 
 			cube.position.x = 0.0f;
@@ -44,7 +44,7 @@ class Demo : public E3D::Engine3D
 		}
 
 		void Update(float deltaTime) override 
-		{
+		{		
 			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
 				cube.Rotate(rot_speed * deltaTime);
 
