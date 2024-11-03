@@ -1,7 +1,9 @@
+#include <iostream>
+
 #include "Engine3D.h"
 #include "Mesh.h"
 
-#define DIS -50
+constexpr float DIS = 1.0f;
 
 class Demo : public E3D::Engine3D
 {
@@ -9,49 +11,69 @@ class Demo : public E3D::Engine3D
 
 		Demo() 
 		{
-			cube.tringles = {
+			cube.triangles = { 
+				
 				// SOUTH
-				{{DIS,DIS,DIS}, {DIS,DIS * -1,DIS}, {DIS * -1,DIS * -1,DIS}},
-				{{DIS,DIS,DIS}, {DIS * -1,DIS * -1,DIS}, {DIS * -1,DIS,DIS}},
+				{DIS,DIS,DIS, DIS,0,DIS, 0,0,DIS},
+				{DIS,DIS,DIS, 0,0,DIS, 0,DIS,DIS},
 
 				// EAST
-				{{DIS * -1,DIS,DIS}, {DIS * -1,DIS * -1,DIS}, {DIS * -1,DIS * -1,DIS * -1}},
-				{{DIS * -1,DIS,DIS}, {DIS * -1,DIS * -1,DIS * -1}, {DIS * -1,DIS,DIS * -1}},
+				{0,DIS,DIS, 0,0,DIS, 0,0,0},
+				{0,DIS,DIS, 0,0,0, 0,DIS,0},
 
 				// NORTH
-				{{DIS * -1,DIS,DIS * -1}, {DIS * -1,DIS * -1,DIS * -1}, {DIS,DIS * -1,DIS * -1}},
-				{{DIS * -1,DIS,DIS * -1}, {DIS,DIS * -1,DIS * -1}, {DIS * -1,DIS,DIS * -1}},
+				{0,DIS,0, 0,0,0, DIS,0,0},
+				{0,DIS,0, DIS,0,0, 0,DIS,0},
 
 				// WEST
-				{{DIS,DIS,DIS * -1}, {DIS,DIS * -1,DIS * -1}, {DIS,DIS * -1,DIS}},
-				{{DIS,DIS,DIS * -1}, {DIS,DIS * -1,DIS}, {DIS,DIS,DIS}},
+				{DIS,DIS,0, DIS,0,0, DIS,0,DIS},
+				{DIS,DIS,0, DIS,0,DIS, DIS,DIS,DIS},
 
 				// TOP
-				{{DIS,DIS * -1,DIS}, {DIS,DIS * -1,DIS * -1}, {DIS * -1,DIS * -1,DIS * -1}},
-				{{DIS,DIS * -1,DIS}, {DIS * -1,DIS * -1,DIS * -1}, {DIS * -1,DIS * -1,DIS}},
+				{DIS,0,DIS, DIS,0,0, 0,0,0},
+				{DIS,0,DIS, 0,0,0, 0,0,DIS},
 
 				// BOTTOM
-				{{DIS * -1,DIS,DIS * -1}, {DIS,DIS,DIS * -1}, {DIS,DIS,DIS}},
-				{{DIS * -1,DIS,DIS * -1}, {DIS,DIS,DIS}, {DIS * -1,DIS,DIS}}
+				{0,DIS,0, DIS,DIS,0, DIS,DIS,DIS},
+				{0,DIS,0, DIS,DIS,DIS, 0,DIS,DIS}
 			};
 
-			cube.position.x = window.GetWidth() / 4;
-			cube.position.y = window.GetHight() / 4;
+			cube.position.x = 0.0f;
+			cube.position.y = 0.0f;
+			cube.position.z = 3.0f;
 		}
 
 		void Update(float deltaTime) override 
 		{
+			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
+			//	cube.Rotate(rot_speed * deltaTime);
+
+			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Down))
+			//	cube.Rotate(-rot_speed * deltaTime);
+
+			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Left))
+			//	cube.Rotate(0.0f, rot_speed * deltaTime);
+
+			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Right))
+			//	cube.Rotate(0.0f, -rot_speed * deltaTime);
+
 			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
-				cube.Rotate(rot_speed * deltaTime);
+				cube.position.z += speed * deltaTime;
 
 			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Down))
-				cube.Rotate(-rot_speed * deltaTime);
+				cube.position.z -= speed * deltaTime;
 
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Left))
-				cube.Rotate(0.0f, rot_speed * deltaTime);
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::W))
+				cube.position.y += speed * deltaTime;
 
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Right))
-				cube.Rotate(0.0f, -rot_speed * deltaTime);
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::S))
+				cube.position.y -= speed * deltaTime;
+
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::A))
+				cube.position.x += speed * deltaTime;
+
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::D))
+				cube.position.x -= speed * deltaTime;
 			
 			renderer.DrawMesh(cube);
 		}
@@ -59,6 +81,7 @@ class Demo : public E3D::Engine3D
 	private:
 		E3D::Mesh cube;
 		float rot_speed = 0.5f;
+		float speed = 1.0f;
 };
 
 int main(int argc, char* argv[])

@@ -25,7 +25,7 @@ void E3D::Engine3D::Run()
 
 		if (timer >= 1)
 		{
-			std::cout << deltaTime * 1000.f << " ms" << std::endl;
+			std::cout << 1.0f / deltaTime << " fps" << std::endl;
 			timer = 0.0f;
 		}
 	}

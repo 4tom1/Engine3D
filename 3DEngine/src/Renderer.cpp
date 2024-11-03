@@ -6,7 +6,7 @@ void E3D::Renderer::DrawLine(float x1, float y1, float x2, float y2)
 	float dy = y2 - y1;
 
 	float length = sqrtf(dx * dx + dy * dy);
-	float atg = atan2(dy, dx);
+	float atg = atan2f(dy, dx);
 
 	for (float i = 0; i < length; i++)
 	{
@@ -26,28 +26,31 @@ void E3D::Renderer::DrawTriangle(const Tri& tri)
 
 void E3D::Renderer::DrawMesh(const Mesh& mesh)
 {
-	for (auto& tri : mesh.triangles)
+	for (auto tri : mesh.triangles)
 	{	
-		Tri transformed;
-		
 		for (int i = 0; i < 3; i++)
 		{
-			Projection3D(tri.p[i], transformed.p[i]);
+			tri.p[i].x += mesh.position.x;
+			tri.p[i].y += mesh.position.y;
+			tri.p[i].z += mesh.position.z;
+			
+			Projection3D(tri.p[i]);
 
-			transformed.p[i].x += mesh.position.x;
-			transformed.p[i].y += mesh.position.y;
-			transformed.p[i].z += mesh.position.z;
+			tri.p[i].x += 1.0f;
+			tri.p[i].y += 1.0f;
+			tri.p[i].x *= 0.25f * p_window->GetWidth();
+			tri.p[i].y *= 0.25f * p_window->GetHight();
 		}
 
-		DrawTriangle(transformed);
+		DrawTriangle(tri);
 	}
 }
 
-void E3D::Renderer::Projection3D(const vec3f& ipoint, vec3f& opoint)
+void E3D::Renderer::Projection3D(vec3f& point) const
 {
-	float tg = tanf(fov / 2);
-	opoint.z = ipoint.z * (far / (far - near)) - ((far * near) / (far - near));
+	float tg = tanf(fov * 0.5f);
+	point.z = point.z * (far / (far - near)) - ((far * near) / (far - near));
 	
-	opoint.x = (aspect_ratio * ipoint.x) / (tg * opoint.z);
-	opoint.y = (aspect_ratio * ipoint.y) / (tg * opoint.z);
+	point.x = (aspectRatio * point.x) / (tg * point.z);
+	point.y = (aspectRatio * point.y) / (tg * point.z);
 }
