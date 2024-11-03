@@ -18,7 +18,7 @@ namespace E3D {
 			Window()
 			{
 				SDL_Init(SDL_INIT_VIDEO);
-				SDL_CreateWindowAndRenderer(2 * 640, 2 * 480, 0, &m_window, &m_renderer);
+				SDL_CreateWindowAndRenderer(1000, 1000, 0, &m_window, &m_renderer);
 				SDL_RenderSetScale(m_renderer, 2, 2);
 			}
 

@@ -45,35 +45,17 @@ class Demo : public E3D::Engine3D
 
 		void Update(float deltaTime) override 
 		{
-			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
-			//	cube.Rotate(rot_speed * deltaTime);
-
-			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Down))
-			//	cube.Rotate(-rot_speed * deltaTime);
-
-			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Left))
-			//	cube.Rotate(0.0f, rot_speed * deltaTime);
-
-			//if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Right))
-			//	cube.Rotate(0.0f, -rot_speed * deltaTime);
-
 			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Up))
-				cube.position.z += speed * deltaTime;
+				cube.Rotate(rot_speed * deltaTime);
 
 			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Down))
-				cube.position.z -= speed * deltaTime;
+				cube.Rotate(-rot_speed * deltaTime);
 
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::W))
-				cube.position.y += speed * deltaTime;
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Left))
+				cube.Rotate(0.0f, rot_speed * deltaTime);
 
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::S))
-				cube.position.y -= speed * deltaTime;
-
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::A))
-				cube.position.x += speed * deltaTime;
-
-			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::D))
-				cube.position.x -= speed * deltaTime;
+			if (E3D::Keyboard::GetInstance().GetKeyRef(E3D::Right))
+				cube.Rotate(0.0f, -rot_speed * deltaTime);
 			
 			renderer.DrawMesh(cube);
 		}

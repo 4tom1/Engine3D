@@ -22,5 +22,7 @@ namespace E3D {
 
 		private:
 
+			bool m_fpsCounter = false;
+			bool m_verticesDebuger = true;
 	};
 }

@@ -21,12 +21,22 @@ void E3D::Engine3D::Run()
 
 		deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000000.f;
 
-		timer += deltaTime;
+		// Debug
 
-		if (timer >= 1)
+		if (m_fpsCounter)
 		{
-			std::cout << 1.0f / deltaTime << " fps" << std::endl;
-			timer = 0.0f;
+			timer += deltaTime;
+
+			if (timer >= 1)
+			{
+				std::cout << 1.0f / deltaTime << " fps" << std::endl;
+				timer = 0.0f;
+			}
+		}
+
+		if (m_verticesDebuger)
+		{
+
 		}
 	}
 }
