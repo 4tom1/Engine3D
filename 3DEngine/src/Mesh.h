@@ -19,7 +19,7 @@ namespace E3D {
 			void Rotate(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
 		private:
-			void RotatePoint(vec3f& point, float x, float y, float z);
+			inline void RotatePoint(vec3f& point, float x, float y, float z);
 
 		public:
 			std::vector<Tri> triangles;

@@ -19,9 +19,9 @@ namespace E3D {
 			float near = 0.1f;
 
 		private:
-			void Projection3D(vec3f& point) const;
-			void DrawTriangle(const Tri& tri);
-			void DrawLine(float x1, float y1, float x2, float y2);
+			inline void Projection3D(vec3f& point) const;
+			inline void DrawTriangle(const Tri& tri);
+			inline void DrawLine(float x1, float y1, float x2, float y2);
 
 		private:
 			Window* p_window;
